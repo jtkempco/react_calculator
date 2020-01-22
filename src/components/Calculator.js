@@ -19,7 +19,7 @@ class Calculator extends Component {
   render() {
     return (
       <div className="calculator">
-        <Display value={this.state.display || "0"} />
+        <Display value={this.state.display || this.state.total || "0"} />
         <Buttons
           clickHandler={this.handleClick}
           disabled={this.state.disabled}
