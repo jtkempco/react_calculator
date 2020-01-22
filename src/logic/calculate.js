@@ -32,6 +32,33 @@ const calculate = (obj, buttonValue) => {
   }
 
   if (isNumber(buttonValue)) {
+    if (buttonName === "0" && obj.display === "0") {
+      return { disabled: null };
+    }   
+    // If there is an operation, update display
+    if (obj.operation) {
+      if (obj.display) {
+        return { display: obj.desplay + buttonName, disabled: null };
+      }
+      return { display: buttonName, disabled: null };
+    }
+    // If there is no operation, update display and clear total
+    if (obj.display) {
+      const display = obj.display === "0" ? buttonName : obj.display + buttonName;
+      return {
+        display,
+        total: null,
+        disabled: null
+      };
+    }
+    return {
+      display: buttonName,
+      total: null,
+      disabled: null
+    };    
+    
+    
+    /*
     if (obj.display && obj.operation && obj.total) {
       const display = obj.total === obj.display ? buttonValue : obj.display + buttonValue;
       return { display, disabled: null };
@@ -43,6 +70,7 @@ const calculate = (obj, buttonValue) => {
 
     const display = obj.display ? obj.display + buttonValue : buttonValue;
     return { display, disabled: null };
+    */
   }
 
   if (buttonValue === ".") {
@@ -86,14 +114,16 @@ const calculate = (obj, buttonValue) => {
     };
   }
 
-  if (buttonValue === "=" && obj.total) {
-    if (obj. && obj.operation) {
-    return {
-      display: operate(obj.total, obj.display, obj.operation),
-      total: null,
-      operation: null,
-      disabled: null
-    };
+  if (buttonValue === "=") {
+    if (obj.display && obj.operation) {
+      return {
+        display: null,
+        total: operate(obj.total, obj.display, obj.operation),
+        operation: null,
+        disabled: null
+      };
+    }else{
+      return {};
   }
 };
 
