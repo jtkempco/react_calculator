@@ -1,9 +1,6 @@
 import Big from "big.js";
 
 const operate = (a, b, operation) => 
-  if (a === "Error" ) {
-    return "Error";
-  }
   const one = Big(a || "0");
   //If dividing or multiplying, then 1 maintains current value in cases of null
   const two = Big(b || (operation === "/" || operation === "*" ? "1" : "0"));
