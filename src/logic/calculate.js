@@ -4,19 +4,8 @@ import isNumber from "./isNumber";
 import isOperator from "./isOperator";
 import operate from "./operate";
 
-/**
- * Given the button value and a calculator data object, return an updated
- * calculator data object.
- *
- * Calculator data object contains:
- *   display:String    the value visible in the display
- *   total:String      the running total
- *   operation:String  +, -, *, /
- *   disabled:String   the value of the curent operation. It is disabled to prevent consecutive clicks
- */
-
 const calculate = (obj, buttonValue) => {
-  //reset the calculator data object.
+  //clear all
   if (buttonValue === "AC") {
     return {
       display: null,
@@ -26,36 +15,23 @@ const calculate = (obj, buttonValue) => {
     };
   }
 
-  //reset only the display
+  //clear display
   if (buttonValue === "C") {
     return { display: null };
   }
 
   if (isNumber(buttonValue)) {
-    if (buttonValue === "0" && obj.display === "0") {
-      return { disabled: null };
-    }   
-    // If there is an operation, update display
-    if (obj.operation) {
-      if (obj.display) {
-        return { display: obj.display + buttonValue, disabled: null };
-      }
-      return { display: buttonValue, disabled: null };
+    if (obj.display && obj.operation && obj.total) {
+      const display = obj.total === obj.display ? buttonValue : obj.display + buttonValue;
+      return { display, disabled: null };
     }
-    // If there is no operation, update display and clear total
-    if (obj.display) {
-      const display = obj.display === "0" ? buttonValue : obj.display + buttonValue;
-      return {
-        display,
-        total: null,
-        disabled: null
-      };
+
+    if (obj.display && obj.operation && obj.operation === "=") {
+      return { display: buttonValue, operation: null, disabled: null };
     }
-    return {
-      display: buttonValue,
-      total: null,
-      disabled: null
-    };    
+
+    const display = obj.display ? obj.display + buttonValue : buttonValue;
+    return { display, disabled: null };
   }
 
   if (buttonValue === ".") {
@@ -67,7 +43,7 @@ const calculate = (obj, buttonValue) => {
       const display = obj.display.includes(".") ? obj.display : obj.display + buttonValue;
       return { display };
     }
-
+    
     return { display: "0." };
   }
 
@@ -99,17 +75,12 @@ const calculate = (obj, buttonValue) => {
     };
   }
 
-  if (buttonValue === "=") {
-    if (obj.display && obj.operation) {
-      return {
-        display: null,
-        total: operate(obj.total, obj.display, obj.operation),
-        operation: null,
-        disabled: null
-      };
-    }else{
-      return {};
-    }
+  if (buttonValue === "=" && obj.total) {
+    return {
+      display: operate(obj.total, obj.display, obj.operation),
+      total: null,
+      operation: buttonValue
+    };
   }
 };
 
