@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import "../calculator.css";
-
 import Display from "./Display";
 import Buttons from "./Buttons";
 import calculate from "../logic/calculate";
+import "../calculator.css";
 
 class Calculator extends Component {
   state = {
