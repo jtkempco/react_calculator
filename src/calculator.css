@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box !important;
+}
+
+#root {
+  max-width: 600px;
+  margin: auto;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-weight: 100;
+}
+
+body,
+button {
+  font-family: Roboto, sans-serif;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+button:active,
+button:focus {
+  outline: none;
+}
+
+button:active {
+  box-shadow: inset 0px 0px 80px 0px rgba(0, 0, 0, 0.25);
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 2vh;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 667px;
+  width: 375px;
+  box-shadow: 0px 0px 20px 0px #aaa;
+}

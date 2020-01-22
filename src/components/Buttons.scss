@@ -1,0 +1,18 @@
+$border-color: #202020;
+
+.calculator-buttons > div {
+  display: flex;
+  flex-flow: row wrap;
+}
+/*
+.calculator-buttons > div > .calculator-button:first-child {
+  border-left: solid thin $border-color;
+}
+.calculator-buttons > div:last-child {
+  border-bottom: solid thin $border-color;
+}
+*/
+
+.calculator-buttons > div > .calculator-button:last-child {
+  border-right: none;
+}

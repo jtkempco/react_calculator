@@ -1,0 +1,50 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-weight: 100;
+}
+
+body,
+button {
+  font-family: Roboto, sans-serif;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+button:active,
+button:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 2vh;
+}
+
+#root {
+  max-width: 600px;
+  margin: auto;
+}

@@ -1,0 +1,34 @@
+import React, { Component } from "react";
+import "../calculator.css";
+
+import Display from "./Display";
+import Buttons from "./Buttons";
+import calculate from "../logic/calculate";
+
+class Calculator extends Component {
+  state = {
+    display: null,
+    total: null,
+    operation: null,
+    disabled: null
+  };
+
+  handleClick = buttonValue => {
+    this.setState(calculate(this.state, buttonValue));
+  };
+
+  render() {
+    return (
+      <div className="calculator">
+        <Display value={this.state.display || "0"} />
+        <Buttons
+          clickHandler={this.handleClick}
+          disabled={this.state.disabled}
+          currentDisplay={this.state.display}
+        />
+      </div>
+    );
+  }
+}
+
+export default Calculator;

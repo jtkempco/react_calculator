@@ -1,0 +1,16 @@
+.calculator-display {
+  color: white;
+  background: #202020;
+  line-height: 130px;
+  font-size: 6em;
+  flex: 1;
+  position: relative;
+}
+
+.calculator-display > div {
+  padding: 0 30px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform-origin: right;
+}
